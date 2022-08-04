@@ -6,12 +6,12 @@ use Dcat\Admin\Traits\HasDateTimeFormatter;
 
 use Illuminate\Database\Eloquent\Model;
 
-class District extends Model
+class City extends Model
 {
     use HasDateTimeFormatter;
+
+//    protected $primaryKey = 'code';
+
     public $timestamps = false;
-    public function cities(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(City::class, 'city','code');
-    }
+
 }

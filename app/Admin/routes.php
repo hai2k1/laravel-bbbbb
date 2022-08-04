@@ -14,9 +14,10 @@ Route::group([
     $router->get('/dashboard', 'HomeController@index');
     $router->resource('/auth/users', 'UserController');
     $router->resource('/posts', 'PostController');
-    $router->resource('/district', 'DistrictController');
-    $router->resource('/province', 'ProvinceController');
-    $router->resource('/ward','WardController');
-    $router->resource('/realestateproject','RealEstateProjectController');
     $router->resource('/historypayment','HistoryPaymentController');
+    $router->resource('/cities', 'CityController');
+    $router->resource('/districts', 'DistrictController');
+    $router->resource('/wards','WardController');
+    $router->resource('/streets', 'StreetController');
+    $router->resource('/projects', 'ProjectController');
 });

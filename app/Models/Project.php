@@ -6,9 +6,10 @@ use Dcat\Admin\Traits\HasDateTimeFormatter;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Ward extends Model
+class Project extends Model
 {
-    use HasDateTimeFormatter;
+	use HasDateTimeFormatter;
+
     public $timestamps = false;
     public function districts(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

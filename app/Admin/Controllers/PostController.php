@@ -2,25 +2,35 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Metrics\Users\MoneyUser;
+use App\Admin\Metrics\Users\TotalUserNew;
 use App\Admin\Repositories\Post;
-use App\Models\Province;
-use App\Models\RealEstateProject;
+use App\Models\City;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
+use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
 
 use Dcat\Admin\FormStep\Form as StepForm;
-use Dcat\Admin\Widgets\Alert;
 
 class PostController extends AdminController
 {
+    public function index(\Dcat\Admin\Layout\Content $content)
+    {
+        return $content
+            ->header('Bài viết')
+            ->description('Quản lí bài viết')
+            ->body($this->grid());
+    }
+
     /**
      * Make a grid builder.
      *
      * @return Grid
      */
+
 
     protected function grid()
     {
@@ -38,7 +48,6 @@ class PostController extends AdminController
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-
             });
         });
     }
@@ -95,20 +104,21 @@ class PostController extends AdminController
             })->add('Nhập thông tin địa điểm', function (StepForm $step) {
                 $step->select('locationinformation.province', trans('Tỉnh/Thành phố'))
                     ->options(function () {
-                        return Province::all()->pluck('name', 'province_id');
+                        return City::all()->pluck('name', 'code');
                     })
                     ->customFormat(function ($v) {
                         return $v;
-                    })->required()
-                    ->load(['locationinformation.id_projectbds', 'locationinformation.district'], ['/api/auth/projectbds', '/api/auth/district']);
-                $step->select('locationinformation.id_projectbds', trans('Dự án'))
-                    ->load(['locationinformation.district','locationinformation.ward'],
-                        ['/api/auth/projectdistrict','/api/auth/projectward']);
-                $step->select('locationinformation.district', 'Quận/Huyện')->load('locationinformation.ward', '/api/auth/ward')->required();
+                    })->required()->load('locationinformation.district', '/api/auth/district');
+                $step->select('locationinformation.district', 'Quận/Huyện')
+                    ->loads(['locationinformation.ward', 'locationinformation.id_projectbds'], ['/api/auth/ward', 'api/auth/'])->required();
+                $step->select('locationinformation.id_projectbds', trans('Dự án'));
                 $step->select('locationinformation.ward', 'Phường/xã')->required();
-                $step->text('locationinformation.address','số nhà')->maxLength(50);
+                $step->text('locationinformation.address', 'số nhà')->maxLength(50);
+                $step->number('locationinformation.floors_number', 'tổng số tầng');
             })->add('Nội dung', function (StepForm $form) {
-                $form->text('name');
+                $form->text('name')->when('abc', function ($form) {
+
+                });
                 $form->text('description');
                 $form->hidden('user_id')->value(Admin::user()->getKey());
                 $form->markdown('body');

@@ -2,8 +2,8 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Repositories\District;
-use App\Models\Province;
+use App\Models\City;
+use App\Models\District;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
@@ -18,16 +18,19 @@ class DistrictController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(District::with('province'), function (Grid $grid) {
-            $grid->column('district_id','id')->sortable();
-            $grid->column('province.name','thành phố');
-            $grid->column('name');
-            $grid->filter(function (Grid\Filter $filter) {
-                $filter->equal('district_id');
-                $filter->like('province.name');
-                $filter->like('name');
+        return Grid::make(District::with('cities'), function (Grid $grid) {
 
+            $grid->column('code')->sortable();
+            $grid->column('id')->sortable();
+            $grid->column('name');
+            $grid->column('cities.name','Tỉnh/Thành phố');
+
+            $grid->filter(function (Grid\Filter $filter) {
+                $filter->equal('code');
+                $filter->like('cities.name','Tỉnh/Thành phố');
             });
+            $grid->quickSearch('name');
+            $grid->enableDialogCreate();
         });
     }
 
@@ -40,10 +43,11 @@ class DistrictController extends AdminController
      */
     protected function detail($id)
     {
-        return Show::make($id, District::with('province'), function (Show $show) {
-            $show->field('district_id');
-            $show->field('province.name','Tỉnh/Thành Phố');
+        return Show::make($id, new District(), function (Show $show) {
+            $show->field('code');
+            $show->field('id');
             $show->field('name');
+            $show->field('city');
         });
     }
 
@@ -54,16 +58,14 @@ class DistrictController extends AdminController
      */
     protected function form()
     {
-        return Form::make(District::with('province'), function (Form $form) {
-            $form->display('district_id');
-            $form->text('name');
-            $form->select('province_id', trans('Tỉnh/Thành phố'))
-                ->options(function () {
-                    return Province::all()->pluck('name', 'province_id');
-                })
-                ->customFormat(function ($v) {
-                    return $v;
-                });
+        return Form::make(new District(), function (Form $form) {
+            $form->text('code')->required();
+            $form->text('name')->required();
+            $form->select('city')->options(function (){
+                return City::all()->pluck('name', 'code');
+            })->customFormat(function ($v) {
+                return $v;
+            })->required();
         });
     }
 }

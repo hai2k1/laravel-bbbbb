@@ -53,8 +53,8 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection Interior_condition
      * @property Grid\Column|Collection highlights
      * @property Grid\Column|Collection post_id
-     * @property Grid\Column|Collection district_id
-     * @property Grid\Column|Collection province_id
+     * @property Grid\Column|Collection code
+     * @property Grid\Column|Collection city
      * @property Grid\Column|Collection uuid
      * @property Grid\Column|Collection connection
      * @property Grid\Column|Collection queue
@@ -92,7 +92,6 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection run_in_maintenance
      * @property Grid\Column|Collection notification_email_address
      * @property Grid\Column|Collection email_verified_at
-     * @property Grid\Column|Collection wards_id
      *
      * @method Grid\Column|Collection state(string $label = null)
      * @method Grid\Column|Collection id(string $label = null)
@@ -136,8 +135,8 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection Interior_condition(string $label = null)
      * @method Grid\Column|Collection highlights(string $label = null)
      * @method Grid\Column|Collection post_id(string $label = null)
-     * @method Grid\Column|Collection district_id(string $label = null)
-     * @method Grid\Column|Collection province_id(string $label = null)
+     * @method Grid\Column|Collection code(string $label = null)
+     * @method Grid\Column|Collection city(string $label = null)
      * @method Grid\Column|Collection uuid(string $label = null)
      * @method Grid\Column|Collection connection(string $label = null)
      * @method Grid\Column|Collection queue(string $label = null)
@@ -175,7 +174,6 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection run_in_maintenance(string $label = null)
      * @method Grid\Column|Collection notification_email_address(string $label = null)
      * @method Grid\Column|Collection email_verified_at(string $label = null)
-     * @method Grid\Column|Collection wards_id(string $label = null)
      */
     class Grid {}
 
@@ -224,8 +222,8 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection Interior_condition
      * @property Show\Field|Collection highlights
      * @property Show\Field|Collection post_id
-     * @property Show\Field|Collection district_id
-     * @property Show\Field|Collection province_id
+     * @property Show\Field|Collection code
+     * @property Show\Field|Collection city
      * @property Show\Field|Collection uuid
      * @property Show\Field|Collection connection
      * @property Show\Field|Collection queue
@@ -263,7 +261,6 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection run_in_maintenance
      * @property Show\Field|Collection notification_email_address
      * @property Show\Field|Collection email_verified_at
-     * @property Show\Field|Collection wards_id
      *
      * @method Show\Field|Collection state(string $label = null)
      * @method Show\Field|Collection id(string $label = null)
@@ -307,8 +304,8 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection Interior_condition(string $label = null)
      * @method Show\Field|Collection highlights(string $label = null)
      * @method Show\Field|Collection post_id(string $label = null)
-     * @method Show\Field|Collection district_id(string $label = null)
-     * @method Show\Field|Collection province_id(string $label = null)
+     * @method Show\Field|Collection code(string $label = null)
+     * @method Show\Field|Collection city(string $label = null)
      * @method Show\Field|Collection uuid(string $label = null)
      * @method Show\Field|Collection connection(string $label = null)
      * @method Show\Field|Collection queue(string $label = null)
@@ -346,7 +343,6 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection run_in_maintenance(string $label = null)
      * @method Show\Field|Collection notification_email_address(string $label = null)
      * @method Show\Field|Collection email_verified_at(string $label = null)
-     * @method Show\Field|Collection wards_id(string $label = null)
      */
     class Show {}
 

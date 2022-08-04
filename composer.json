@@ -17,9 +17,11 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^9.0",
         "laravel/tinker": "^2.5",
+        "lty5240/dcat-easy-sku": "^1.1",
         "mosiboom/dcat-iframe-tab": "^1.2",
         "nivin-studio/dcat-ext-taskscheduling": "^2.0",
         "orangehill/iseed": "^3.0",
+        "super-eggs/dcat-distpicker": "^2.0",
         "tymon/jwt-auth": "^1.0.2",
         "w7corp/easywechat": "~5.0"
     },

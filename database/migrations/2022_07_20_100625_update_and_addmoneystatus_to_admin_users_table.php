@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('admin_users', function (Blueprint $table) {
-            $table->integer('phone')->unique();
+            $table->integer('phone')->unique()->nullable();
             $table->BigInteger('money')->default(0);
             $table->integer('status')->default(1)->comment('1 is oke,0 is cancel');
         });
